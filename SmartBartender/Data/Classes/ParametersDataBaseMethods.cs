@@ -48,5 +48,35 @@ namespace SmartBartender.Data.Classes
                 return;
             }
         }
+        public static void HistoryDrop(Parameters parameters, Client client, int count)
+        {
+            var getParameter = GetParameter(parameters.Alcohol.id, parameters.MoodType.id, parameters.TimesOfTheDay.id, parameters.LevelType.id);
+            DropHistory dropHistory = new DropHistory
+            {
+                idParameters = getParameter.id,
+                Price = getParameter.Alcohol.Price,
+                DateDrop = DateTime.Now,
+                idClient = client.id,
+                Count = count
+
+            };
+            DataBaseConnection.connection.DropHistory.Add(dropHistory);
+            DataBaseConnection.connection.SaveChanges();
+        }
+        public static int RandomCount(int mood, int level)
+        {
+            Random rnd = new Random();
+            int value;
+            if (level>4 && mood>2)
+            {
+                return value = rnd.Next(4, 6);
+            }
+            else
+            {
+                return value = rnd.Next(1, 5);
+            }
+            
+            
+        }
     }
 }

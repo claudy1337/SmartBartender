@@ -88,7 +88,7 @@ namespace SmartBartender
 
         private void btnOpenGenerator_Click(object sender, RoutedEventArgs e)
         {
-            FramePageContainer.Navigate(new GeneratorPage());
+            FramePageContainer.Navigate(new GeneratorPage(CurrentClient));
         }
     }
 }

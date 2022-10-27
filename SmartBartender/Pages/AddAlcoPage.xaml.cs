@@ -76,7 +76,9 @@ namespace SmartBartender.Pages
                     }
                     else
                     {
-
+                        var selectActive = CBIsActive.SelectedItem as isActive;
+                        AlcoDataBaseMethods.EditAlco(CurrentAlcohol, Convert.ToInt32(txtStrengthDegrees.Text), Convert.ToInt32(txtPrice.Text), image, selectActive.id);
+                        NavigationService.Navigate(new SupplyOfAlcoholPage());
                     }
                 }
             }
@@ -90,12 +92,17 @@ namespace SmartBartender.Pages
         private void isNotNullData()
         {
             this.DataContext = CurrentAlcohol;
+            txtName.IsReadOnly = true;
             CBIsActive.SelectedIndex = CurrentAlcohol.isActive1.id;
             btnEditOrAddAlco.Content = "Edit";
+            txtInformationPage.Text = "Edit Alco";
         }
         private void isNullData()
         {
-            btnEditOrAddAlco.Content = "Add";            
+            btnEditOrAddAlco.Content = "Add";
+            txtInformationPage.Text = "Add Alco";
+            string imagePath = "/Resources/alcohol.png";
+            imgAlco.Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,11 +57,21 @@ namespace SmartBartender.Data.Classes
             else
             {
                 MessageBox.Show("уже существует");
+                return;
             }
         }
-        public static void EditAlco(Alcohol oldAlcohol, string name)
+        public static void EditAlco(Alcohol oldAlcohol, int degrees, int price, byte[] image, int isactive)
         {
-
+            var getAlco = GetCurrentAlcohol(oldAlcohol.Name);
+            if (getAlco != null)
+            {
+                getAlco.StrengthDegrees = degrees;
+                getAlco.Price = price;
+                getAlco.Image = image;
+                getAlco.isActive = isactive;
+                DataBaseConnection.connection.SaveChanges();
+                MessageBox.Show("данные обновленны");
+            }
         }
     }
 }

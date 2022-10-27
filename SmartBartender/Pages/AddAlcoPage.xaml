@@ -22,7 +22,7 @@
                         <RowDefinition Height="320"/>
                         <RowDefinition Height="100"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Add Alco" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+                    <TextBlock x:Name="txtInformationPage" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
                     <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
                         <TextBox
                      FontSize="15"

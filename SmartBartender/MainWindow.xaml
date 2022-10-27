@@ -44,7 +44,7 @@
                             <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-15,0,0">
                                 <TextBlock Text="Главная" FontSize="15" HorizontalAlignment="Center"/>
                                 <Button x:Name="btnOrder" Click="btnOrder_Click" VerticalAlignment="Center" Background="Transparent" Height="40" Content="Заказать"  Width="120" Margin="0,10,0,10" />
-                                <Button VerticalAlignment="Center" Background="Transparent" Height="40" Content="Заказы"  Width="120" Margin="0,0,0,10"/>
+                                <Button VerticalAlignment="Center" Background="Transparent" Height="40" Content="История"  Width="120" Margin="0,0,0,10" x:Name="btnHistory" Click="btnHistory_Click"/>
                                 <Button VerticalAlignment="Center" Background="Transparent" Height="40" Content="Генератор"  Width="120" x:Name="btnOpenGenerator" Click="btnOpenGenerator_Click"/>
                             </StackPanel>
                             <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">

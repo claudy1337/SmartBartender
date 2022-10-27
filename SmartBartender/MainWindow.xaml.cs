@@ -90,5 +90,10 @@ namespace SmartBartender
         {
             FramePageContainer.Navigate(new GeneratorPage(CurrentClient));
         }
+
+        private void btnHistory_Click(object sender, RoutedEventArgs e)
+        {
+            FramePageContainer.Navigate(new HistoryPage(CurrentClient));
+        }
     }
 }

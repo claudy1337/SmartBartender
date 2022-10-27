@@ -1,0 +1,51 @@
+﻿<Page x:Class="SmartBartender.Pages.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SmartBartender.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+      Title="HistoryPage"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <ListView Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                <Grid Width="430">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="250"/>
+                        <RowDefinition Height="220"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="{Binding Parameters.Image}" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
+                    <StackPanel Grid.Row="1" Margin="5">
+                        <Grid Height="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBlock Text="dffs" FontSize="25"/>
+                                <TextBlock Text="dffs" FontSize="25"/>
+                                <TextBlock Text="dffs" FontSize="25"/>
+                                <TextBlock Text="dffs" FontSize="25"/>
+                                <TextBlock Text="dffs" FontSize="25"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical">
+                                
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </ListView>
+            <material:Card Margin="15" Background="#9966cc">
+                <TextBox Height="40"/>
+            </material:Card>
+        </Grid>
+    </Border>
+</Page>

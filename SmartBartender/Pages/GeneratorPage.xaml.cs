@@ -30,7 +30,6 @@ namespace SmartBartender.Pages
             InitializeComponent();
             BindingData();
         }
-
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var selectAlco = CBAlco.SelectedItem as Alcohol;
@@ -44,11 +43,19 @@ namespace SmartBartender.Pages
             else
             {
                 var getParams = ParametersDataBaseMethods.GetParameter(selectAlco.id, selectMood.id, selectTime.id, selectLevel.id);
-                count = ParametersDataBaseMethods.RandomCount(getParams.MoodType.id, getParams.LevelType.id);
-                ParametersDataBaseMethods.HistoryDrop(getParams, CurrentClient, count);
-                MessageBox.Show($"вам выпал {getParams.Alcohol.Name} в количестве {count}");
-                txtDescrition.Text = getParams.Descrition;
-                this.DataContext = getParams;
+                if (getParams != null)
+                {
+                    count = ParametersDataBaseMethods.RandomCount(getParams.MoodType.id, getParams.LevelType.id);
+                    ParametersDataBaseMethods.HistoryDrop(getParams, CurrentClient, count);
+                    MessageBox.Show($"вам выпал {getParams.Alcohol.Name} в количестве {count}");
+                    txtDescrition.Text = getParams.Descrition;
+                    this.DataContext = getParams;
+                }
+                else
+                {
+                    MessageBox.Show("такой конфигурации нету");
+                }
+                
             }
         }
         private void BindingData()

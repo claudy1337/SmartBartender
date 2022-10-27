@@ -4,14 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище SmartBartenderModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AgeType">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="int" />
-        </EntityType>
+    <Schema Namespace="Хранилище SmartBartenderModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Alcohol">
           <Key>
             <PropertyRef Name="id" />
@@ -89,9 +82,10 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idAlcohol" Type="int" />
           <Property Name="idMoodType" Type="int" />
-          <Property Name="idAgeType" Type="int" />
           <Property Name="idTimesOfDay" Type="int" />
           <Property Name="idLevelType" Type="int" />
+          <Property Name="Descrition" Type="nvarchar(max)" />
+          <Property Name="Image" Type="image" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -110,12 +104,12 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TimesOfDayType">
+        <EntityType Name="TimesOfTheDay">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="int" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Times" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Alcohol_isActive">
           <End Role="isActive" Type="Self.isActive" Multiplicity="0..1" />
@@ -189,18 +183,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Parameters_AgeType1">
-          <End Role="AgeType" Type="Self.AgeType" Multiplicity="0..1" />
-          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AgeType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Parameters">
-              <PropertyRef Name="idAgeType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Parameters_Alcohol">
           <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="0..1" />
           <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
@@ -237,11 +219,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Parameters_TimesOfDayType">
-          <End Role="TimesOfDayType" Type="Self.TimesOfDayType" Multiplicity="0..1" />
+        <Association Name="FK_Parameters_TimesOfTheDay">
+          <End Role="TimesOfTheDay" Type="Self.TimesOfTheDay" Multiplicity="0..1" />
           <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TimesOfDayType">
+            <Principal Role="TimesOfTheDay">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Parameters">
@@ -250,7 +232,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище SmartBartenderModelContainer">
-          <EntitySet Name="AgeType" EntityType="Self.AgeType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alcohol" EntityType="Self.Alcohol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
@@ -262,7 +243,7 @@
           <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TimesOfDayType" EntityType="Self.TimesOfDayType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimesOfTheDay" EntityType="Self.TimesOfTheDay" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Alcohol_isActive" Association="Self.FK_Alcohol_isActive">
             <End Role="isActive" EntitySet="isActive" />
             <End Role="Alcohol" EntitySet="Alcohol" />
@@ -287,10 +268,6 @@
             <End Role="Parameters" EntitySet="Parameters" />
             <End Role="DropHistory" EntitySet="DropHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Parameters_AgeType1" Association="Self.FK_Parameters_AgeType1">
-            <End Role="AgeType" EntitySet="AgeType" />
-            <End Role="Parameters" EntitySet="Parameters" />
-          </AssociationSet>
           <AssociationSet Name="FK_Parameters_Alcohol" Association="Self.FK_Parameters_Alcohol">
             <End Role="Alcohol" EntitySet="Alcohol" />
             <End Role="Parameters" EntitySet="Parameters" />
@@ -303,24 +280,15 @@
             <End Role="MoodType" EntitySet="MoodType" />
             <End Role="Parameters" EntitySet="Parameters" />
           </AssociationSet>
-          <AssociationSet Name="FK_Parameters_TimesOfDayType" Association="Self.FK_Parameters_TimesOfDayType">
-            <End Role="TimesOfDayType" EntitySet="TimesOfDayType" />
+          <AssociationSet Name="FK_Parameters_TimesOfTheDay" Association="Self.FK_Parameters_TimesOfTheDay">
+            <End Role="TimesOfTheDay" EntitySet="TimesOfTheDay" />
             <End Role="Parameters" EntitySet="Parameters" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SmartBartenderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AgeType">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="Int32" />
-          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_AgeType1" FromRole="AgeType" ToRole="Parameters" />
-        </EntityType>
         <EntityType Name="Alcohol">
           <Key>
             <PropertyRef Name="id" />
@@ -411,15 +379,15 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idAlcohol" Type="Int32" />
           <Property Name="idMoodType" Type="Int32" />
-          <Property Name="idAgeType" Type="Int32" />
           <Property Name="idTimesOfDay" Type="Int32" />
           <Property Name="idLevelType" Type="Int32" />
-          <NavigationProperty Name="AgeType" Relationship="Self.FK_Parameters_AgeType1" FromRole="Parameters" ToRole="AgeType" />
           <NavigationProperty Name="Alcohol" Relationship="Self.FK_Parameters_Alcohol" FromRole="Parameters" ToRole="Alcohol" />
           <NavigationProperty Name="DropHistory" Relationship="Self.FK_DropHistory_Parameters" FromRole="Parameters" ToRole="DropHistory" />
           <NavigationProperty Name="LevelType" Relationship="Self.FK_Parameters_LevelType" FromRole="Parameters" ToRole="LevelType" />
           <NavigationProperty Name="MoodType" Relationship="Self.FK_Parameters_MoodType" FromRole="Parameters" ToRole="MoodType" />
-          <NavigationProperty Name="TimesOfDayType" Relationship="Self.FK_Parameters_TimesOfDayType" FromRole="Parameters" ToRole="TimesOfDayType" />
+          <Property Name="Descrition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TimesOfTheDay" Relationship="SmartBartenderModel.FK_Parameters_TimesOfTheDay" FromRole="Parameters" ToRole="TimesOfTheDay" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -439,26 +407,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TimesOfDayType">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="Int32" />
-          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_TimesOfDayType" FromRole="TimesOfDayType" ToRole="Parameters" />
-        </EntityType>
-        <Association Name="FK_Parameters_AgeType1">
-          <End Role="AgeType" Type="Self.AgeType" Multiplicity="0..1" />
-          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AgeType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Parameters">
-              <PropertyRef Name="idAgeType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Alcohol_isActive">
           <End Role="isActive" Type="Self.isActive" Multiplicity="0..1" />
           <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="*" />
@@ -567,20 +515,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Parameters_TimesOfDayType">
-          <End Role="TimesOfDayType" Type="Self.TimesOfDayType" Multiplicity="0..1" />
-          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TimesOfDayType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Parameters">
-              <PropertyRef Name="idTimesOfDay" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SmartBartenderEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AgeType" EntityType="Self.AgeType" />
           <EntitySet Name="Alcohol" EntityType="Self.Alcohol" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" />
           <EntitySet Name="Client" EntityType="Self.Client" />
@@ -592,11 +527,6 @@
           <EntitySet Name="Parameters" EntityType="Self.Parameters" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TimesOfDayType" EntityType="Self.TimesOfDayType" />
-          <AssociationSet Name="FK_Parameters_AgeType1" Association="Self.FK_Parameters_AgeType1">
-            <End Role="AgeType" EntitySet="AgeType" />
-            <End Role="Parameters" EntitySet="Parameters" />
-          </AssociationSet>
           <AssociationSet Name="FK_Alcohol_isActive" Association="Self.FK_Alcohol_isActive">
             <End Role="isActive" EntitySet="isActive" />
             <End Role="Alcohol" EntitySet="Alcohol" />
@@ -633,25 +563,38 @@
             <End Role="MoodType" EntitySet="MoodType" />
             <End Role="Parameters" EntitySet="Parameters" />
           </AssociationSet>
-          <AssociationSet Name="FK_Parameters_TimesOfDayType" Association="Self.FK_Parameters_TimesOfDayType">
-            <End Role="TimesOfDayType" EntitySet="TimesOfDayType" />
+          <EntitySet Name="TimesOfTheDay" EntityType="SmartBartenderModel.TimesOfTheDay" />
+          <AssociationSet Name="FK_Parameters_TimesOfTheDay" Association="SmartBartenderModel.FK_Parameters_TimesOfTheDay">
+            <End Role="TimesOfTheDay" EntitySet="TimesOfTheDay" />
             <End Role="Parameters" EntitySet="Parameters" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TimesOfTheDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Times" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Parameters" Relationship="SmartBartenderModel.FK_Parameters_TimesOfTheDay" FromRole="TimesOfTheDay" ToRole="Parameters" />
+        </EntityType>
+        <Association Name="FK_Parameters_TimesOfTheDay">
+          <End Type="SmartBartenderModel.TimesOfTheDay" Role="TimesOfTheDay" Multiplicity="0..1" />
+          <End Type="SmartBartenderModel.Parameters" Role="Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimesOfTheDay">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idTimesOfDay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище SmartBartenderModelContainer" CdmEntityContainer="SmartBartenderEntities">
-          <EntitySetMapping Name="AgeType">
-            <EntityTypeMapping TypeName="SmartBartenderModel.AgeType">
-              <MappingFragment StoreEntitySet="AgeType">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Alcohol">
             <EntityTypeMapping TypeName="SmartBartenderModel.Alcohol">
               <MappingFragment StoreEntitySet="Alcohol">
@@ -733,10 +676,11 @@
           <EntitySetMapping Name="Parameters">
             <EntityTypeMapping TypeName="SmartBartenderModel.Parameters">
               <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Descrition" ColumnName="Descrition" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idAlcohol" ColumnName="idAlcohol" />
                 <ScalarProperty Name="idMoodType" ColumnName="idMoodType" />
-                <ScalarProperty Name="idAgeType" ColumnName="idAgeType" />
                 <ScalarProperty Name="idTimesOfDay" ColumnName="idTimesOfDay" />
                 <ScalarProperty Name="idLevelType" ColumnName="idLevelType" />
               </MappingFragment>
@@ -761,11 +705,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TimesOfDayType">
-            <EntityTypeMapping TypeName="SmartBartenderModel.TimesOfDayType">
-              <MappingFragment StoreEntitySet="TimesOfDayType">
+          <EntitySetMapping Name="TimesOfTheDay">
+            <EntityTypeMapping TypeName="SmartBartenderModel.TimesOfTheDay">
+              <MappingFragment StoreEntitySet="TimesOfTheDay">
+                <ScalarProperty Name="Times" ColumnName="Times" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

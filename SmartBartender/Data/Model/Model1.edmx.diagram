@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ab8ce2d06aff4b3aa2790e8f0da98484" Name="Diagram1">
-        <EntityTypeShape EntityType="SmartBartenderModel.AgeType" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.Alcohol" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.Authorization" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.Client" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
@@ -17,8 +16,6 @@
         <EntityTypeShape EntityType="SmartBartenderModel.Parameters" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.Role" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmartBartenderModel.TimesOfDayType" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_AgeType1" ManuallyRouted="false" />
         <AssociationConnector Association="SmartBartenderModel.FK_Alcohol_isActive" ManuallyRouted="false" />
         <AssociationConnector Association="SmartBartenderModel.FK_Parameters_Alcohol" ManuallyRouted="false" />
         <AssociationConnector Association="SmartBartenderModel.FK_Client_Authorization" ManuallyRouted="false" />
@@ -28,7 +25,8 @@
         <AssociationConnector Association="SmartBartenderModel.FK_DropHistory_Parameters" ManuallyRouted="false" />
         <AssociationConnector Association="SmartBartenderModel.FK_Parameters_LevelType" ManuallyRouted="false" />
         <AssociationConnector Association="SmartBartenderModel.FK_Parameters_MoodType" ManuallyRouted="false" />
-        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_TimesOfDayType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmartBartenderModel.TimesOfTheDay" Width="1.5" PointX="5.375" PointY="8.875" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_TimesOfTheDay" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -34,7 +34,7 @@ namespace SmartBartender.Pages
         }
         private void BindingData()
         {
-            lstvAlco.ItemsSource = AlcoDataBaseMethods.GetAllAlcohol();
+            lstvAlco.ItemsSource = AlcoDataBaseMethods.GetAlcohol();
         }
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)

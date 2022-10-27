@@ -1,0 +1,71 @@
+﻿<Page x:Class="SmartBartender.Pages.GeneratorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SmartBartender.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+      Title="GeneratorPage"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,15,0,0">
+                <TextBlock Text="Smart Bartender" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="25"/>
+                <ComboBox x:Name="CBAlco" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Напиток" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,15,0,15">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+                <ComboBox x:Name="CBMoodType" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Настроение" Style="{StaticResource MaterialDesignOutlinedComboBox}" >
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">
+                <ComboBox x:Name="CBLevel" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Уровень" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,20,0,15">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+                <ComboBox x:Name="CBTimesOfDay" DisplayMemberPath="Times" FontSize="15" Width="220" material:HintAssist.Hint="Время" Style="{StaticResource MaterialDesignOutlinedComboBox}" >
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+                <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" Width="220" Height="40" Content="Получить Напиток" Foreground="Black" Cursor="Hand" x:Name="btnAdd" Click="btnAdd_Click" Margin="0,40,0,0"/>
+            </StackPanel>
+            <Image Grid.Row="0" Grid.Column="1" Margin="10" x:Name="imgAlco" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBox
+                    Foreground="#9966cc"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="15"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Margin="10"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto"
+                    material:HintAssist.Hint="Описание"
+                    x:Name="txtDescrition"/>
+        </Grid>
+    </Border>
+</Page>

@@ -12,16 +12,16 @@ namespace SmartBartender.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class AgeType
+    public partial class TimesOfTheDay
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AgeType()
+        public TimesOfTheDay()
         {
             this.Parameters = new HashSet<Parameters>();
         }
     
         public int id { get; set; }
-        public Nullable<int> Name { get; set; }
+        public string Times { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parameters> Parameters { get; set; }

@@ -32,7 +32,7 @@
                      Text="{Binding Authorization.Login}"
                      Foreground="#9966cc"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     material:HintAssist.Hint="Login" Width="220"/>
+                     material:HintAssist.Hint="Логин" Width="220"/>
                         <TextBox
                      FontSize="15"
                      Text="{Binding Name}"
@@ -40,16 +40,17 @@
                      Foreground="#9966cc"
                      Margin="0,15,0,15"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     material:HintAssist.Hint="Name" Width="220"/>
+                     material:HintAssist.Hint="Имя" Width="220"/>
                         <TextBox
+                     MaxLength="2"
                      Text="{Binding Age}"
                      FontSize="15"
                      x:Name="txtAge"
                      Margin="0,0,0,15"
                      Foreground="#9966cc"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     material:HintAssist.Hint="Age" Width="220"/>
-                        <ComboBox x:Name="CBGender" DisplayMemberPath="Type" FontSize="15" Width="220" material:HintAssist.Hint="Gender" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                     material:HintAssist.Hint="Возраст" Width="220"/>
+                        <ComboBox x:Name="CBGender" DisplayMemberPath="Type" FontSize="15" Width="220" material:HintAssist.Hint="Гендер" Style="{StaticResource MaterialDesignOutlinedComboBox}">
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="ComboBoxItem">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -58,7 +59,7 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Background="Transparent" Width="220" Height="40" Content="Edit" Foreground="Black" Cursor="Hand" x:Name="btnEditAccount" Click="btnEditAccount_Click"/>
+                        <Button Background="Transparent" Width="220" Height="40" Content="Изменить" Foreground="Black" Cursor="Hand" x:Name="btnEditAccount" Click="btnEditAccount_Click"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

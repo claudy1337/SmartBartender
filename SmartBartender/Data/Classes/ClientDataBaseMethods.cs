@@ -78,13 +78,18 @@ namespace SmartBartender.Data.Classes
         public static void EditClient(Client oldCLient, int age, string name, int gender)
         {
             var getClient = GetClient(oldCLient.Authorization.Login, oldCLient.Authorization.Password);
-            if (getClient != null)
+            if (getClient != null && age >= 18)
             {
                 getClient.Age = age;
                 getClient.Name = name;
                 getClient.Gender = gender;
                 DataBaseConnection.connection.SaveChanges();
                 MessageBox.Show("данные успешно поменялись");
+            }
+            else
+            {
+                MessageBox.Show("возраст меньше 18");
+                return;
             }
         }
         public static void EditImageClient(Client oldClient)

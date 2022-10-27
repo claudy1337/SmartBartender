@@ -26,7 +26,7 @@
                      Text="{Binding Name}"
                      x:Name="txtName"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     material:HintAssist.Hint="Name" Width="200"/>
+                     material:HintAssist.Hint="Название" Width="200"/>
                 
                 <TextBox
                      Foreground="#9966cc"
@@ -35,7 +35,7 @@
                      FontSize="15"
                      x:Name="txtPrice"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     material:HintAssist.Hint="Price" Width="200"/>
+                     material:HintAssist.Hint="Цена" Width="200"/>
 
                 <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Button Background="Transparent" Width="200" Height="40" Content="Заказать Новый" Foreground="Black" Cursor="Hand" x:Name="btnEditAccount" Click="btnEditAccount_Click"/>
@@ -51,11 +51,23 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Image Source="{Binding Image}" RenderOptions.BitmapScalingMode="HighQuality" Margin="10" Grid.Row="0"/>
-                            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Name}" FontSize="25"/>
-                                <TextBlock Text="{Binding StrengthDegrees}" FontSize="25" Margin="0,5,0,5"/>
-                                <TextBlock Text="{Binding Price}" FontSize="25"/>
-                                <TextBlock Text="{Binding isActive}" FontSize="25" Margin="0,5,0,5"/>
+                            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Height="160">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Название: " FontSize="25"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="25"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Алкоголя: " FontSize="25" Margin="0,5,0,5"/>
+                                    <TextBlock Text="{Binding StrengthDegrees}" FontSize="25" Margin="0,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Цена: " FontSize="25"/>
+                                    <TextBlock Text="{Binding Price}" FontSize="25"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Актив?: " FontSize="25" Margin="0,5,0,5"/>
+                                    <TextBlock Text="{Binding isActive1.Type}" FontSize="25" Margin="0,5,0,5"/>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

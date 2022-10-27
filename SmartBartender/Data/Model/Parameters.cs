@@ -23,16 +23,16 @@ namespace SmartBartender.Data.Model
         public int id { get; set; }
         public Nullable<int> idAlcohol { get; set; }
         public Nullable<int> idMoodType { get; set; }
-        public Nullable<int> idAgeType { get; set; }
         public Nullable<int> idTimesOfDay { get; set; }
         public Nullable<int> idLevelType { get; set; }
+        public string Descrition { get; set; }
+        public byte[] Image { get; set; }
     
-        public virtual AgeType AgeType { get; set; }
         public virtual Alcohol Alcohol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DropHistory> DropHistory { get; set; }
         public virtual LevelType LevelType { get; set; }
         public virtual MoodType MoodType { get; set; }
-        public virtual TimesOfDayType TimesOfDayType { get; set; }
+        public virtual TimesOfTheDay TimesOfTheDay { get; set; }
     }
 }

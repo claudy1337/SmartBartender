@@ -25,7 +25,6 @@ namespace SmartBartender.Data.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AgeType> AgeType { get; set; }
         public virtual DbSet<Alcohol> Alcohol { get; set; }
         public virtual DbSet<Authorization> Authorization { get; set; }
         public virtual DbSet<Client> Client { get; set; }
@@ -37,6 +36,6 @@ namespace SmartBartender.Data.Model
         public virtual DbSet<Parameters> Parameters { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<TimesOfDayType> TimesOfDayType { get; set; }
+        public virtual DbSet<TimesOfTheDay> TimesOfTheDay { get; set; }
     }
 }

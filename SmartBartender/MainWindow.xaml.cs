@@ -78,7 +78,17 @@ namespace SmartBartender
 
         private void btnGenerator_Click(object sender, RoutedEventArgs e)
         {
+            FramePageContainer.Navigate(new CreateGeneratorPage());
+        }
 
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            FramePageContainer.Navigate(new CocktailsPage(CurrentClient));
+        }
+
+        private void btnOpenGenerator_Click(object sender, RoutedEventArgs e)
+        {
+            FramePageContainer.Navigate(new GeneratorPage());
         }
     }
 }

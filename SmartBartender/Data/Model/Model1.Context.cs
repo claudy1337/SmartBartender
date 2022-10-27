@@ -31,6 +31,7 @@ namespace SmartBartender.Data.Model
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<DropHistory> DropHistory { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<isActive> isActive { get; set; }
         public virtual DbSet<LevelType> LevelType { get; set; }
         public virtual DbSet<MoodType> MoodType { get; set; }
         public virtual DbSet<Parameters> Parameters { get; set; }

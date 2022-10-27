@@ -29,11 +29,12 @@ namespace SmartBartender.Pages
 
         private void btnEditAccount_Click(object sender, RoutedEventArgs e)
         {
-
+            Alcohol alcohol = new Alcohol();
+            NavigationService.Navigate(new AddAlcoPage(alcohol));
         }
         private void BindingData()
         {
-            lstvAlco.ItemsSource = AlcoDataBaseMethods.GetAlcohol();
+            lstvAlco.ItemsSource = AlcoDataBaseMethods.GetAllAlcohol();
         }
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)

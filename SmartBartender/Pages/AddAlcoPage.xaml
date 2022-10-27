@@ -47,14 +47,12 @@
                      Foreground="#9966cc"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      material:HintAssist.Hint="Цена" Width="220"/>
-                        <ComboBox x:Name="CBIsActive" DisplayMemberPath="isActive" FontSize="15" Width="220" material:HintAssist.Hint="Активный?" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBox x:Name="CBIsActive" DisplayMemberPath="Type" FontSize="15" Width="220" material:HintAssist.Hint="Активный?" Style="{StaticResource MaterialDesignOutlinedComboBox}">
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="ComboBoxItem">
                                     <Setter Property="Background" Value="Transparent"/>
                                 </Style>
                             </ComboBox.ItemContainerStyle>
-                            <TextBlock Text="Нет"/>
-                            <TextBlock Text="Да"/>
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">

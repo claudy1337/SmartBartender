@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище SmartBartenderModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище SmartBartenderModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AgeType">
           <Key>
             <PropertyRef Name="id" />
@@ -21,7 +21,7 @@
           <Property Name="StrengthDegrees" Type="int" />
           <Property Name="Image" Type="image" />
           <Property Name="Price" Type="int" />
-          <Property Name="isActive" Type="bit" />
+          <Property Name="isActive" Type="int" />
         </EntityType>
         <EntityType Name="Authorization">
           <Key>
@@ -55,6 +55,13 @@
           <Property Name="Count" Type="int" />
         </EntityType>
         <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="isActive">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -110,6 +117,18 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="int" />
         </EntityType>
+        <Association Name="FK_Alcohol_isActive">
+          <End Role="isActive" Type="Self.isActive" Multiplicity="0..1" />
+          <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="isActive">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alcohol">
+              <PropertyRef Name="isActive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_Authorization">
           <End Role="Authorization" Type="Self.Authorization" Multiplicity="0..1" />
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
@@ -237,12 +256,17 @@
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DropHistory" EntityType="Self.DropHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="isActive" EntityType="Self.isActive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LevelType" EntityType="Self.LevelType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MoodType" EntityType="Self.MoodType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimesOfDayType" EntityType="Self.TimesOfDayType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alcohol_isActive" Association="Self.FK_Alcohol_isActive">
+            <End Role="isActive" EntitySet="isActive" />
+            <End Role="Alcohol" EntitySet="Alcohol" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_Authorization" Association="Self.FK_Client_Authorization">
             <End Role="Authorization" EntitySet="Authorization" />
             <End Role="Client" EntitySet="Client" />
@@ -284,7 +308,8 @@
             <End Role="Parameters" EntitySet="Parameters" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SmartBartenderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -305,8 +330,9 @@
           <Property Name="StrengthDegrees" Type="Int32" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Price" Type="Int32" />
+          <Property Name="isActive" Type="Int32" />
+          <NavigationProperty Name="isActive1" Relationship="Self.FK_Alcohol_isActive" FromRole="Alcohol" ToRole="isActive" />
           <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_Alcohol" FromRole="Alcohol" ToRole="Parameters" />
-          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Authorization">
           <Key>
@@ -353,6 +379,14 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="isActive">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Alcohol" Relationship="Self.FK_Alcohol_isActive" FromRole="isActive" ToRole="Alcohol" />
         </EntityType>
         <EntityType Name="LevelType">
           <Key>
@@ -422,6 +456,18 @@
             </Principal>
             <Dependent Role="Parameters">
               <PropertyRef Name="idAgeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alcohol_isActive">
+          <End Role="isActive" Type="Self.isActive" Multiplicity="0..1" />
+          <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="isActive">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alcohol">
+              <PropertyRef Name="isActive" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -540,6 +586,7 @@
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="DropHistory" EntityType="Self.DropHistory" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="isActive" EntityType="Self.isActive" />
           <EntitySet Name="LevelType" EntityType="Self.LevelType" />
           <EntitySet Name="MoodType" EntityType="Self.MoodType" />
           <EntitySet Name="Parameters" EntityType="Self.Parameters" />
@@ -549,6 +596,10 @@
           <AssociationSet Name="FK_Parameters_AgeType1" Association="Self.FK_Parameters_AgeType1">
             <End Role="AgeType" EntitySet="AgeType" />
             <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alcohol_isActive" Association="Self.FK_Alcohol_isActive">
+            <End Role="isActive" EntitySet="isActive" />
+            <End Role="Alcohol" EntitySet="Alcohol" />
           </AssociationSet>
           <AssociationSet Name="FK_Parameters_Alcohol" Association="Self.FK_Parameters_Alcohol">
             <End Role="Alcohol" EntitySet="Alcohol" />
@@ -604,12 +655,12 @@
           <EntitySetMapping Name="Alcohol">
             <EntityTypeMapping TypeName="SmartBartenderModel.Alcohol">
               <MappingFragment StoreEntitySet="Alcohol">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StrengthDegrees" ColumnName="StrengthDegrees" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -650,6 +701,14 @@
           <EntitySetMapping Name="Gender">
             <EntityTypeMapping TypeName="SmartBartenderModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="isActive">
+            <EntityTypeMapping TypeName="SmartBartenderModel.isActive">
+              <MappingFragment StoreEntitySet="isActive">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
               </MappingFragment>

@@ -93,6 +93,9 @@
     <Compile Include="Data\Model\Gender.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Model\isActive.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Model\LevelType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

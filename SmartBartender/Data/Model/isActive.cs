@@ -12,23 +12,18 @@ namespace SmartBartender.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Alcohol
+    public partial class isActive
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Alcohol()
+        public isActive()
         {
-            this.Parameters = new HashSet<Parameters>();
+            this.Alcohol = new HashSet<Alcohol>();
         }
     
         public int id { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> StrengthDegrees { get; set; }
-        public byte[] Image { get; set; }
-        public Nullable<int> Price { get; set; }
-        public Nullable<int> isActive { get; set; }
+        public string Type { get; set; }
     
-        public virtual isActive isActive1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Parameters> Parameters { get; set; }
+        public virtual ICollection<Alcohol> Alcohol { get; set; }
     }
 }

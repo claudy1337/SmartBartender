@@ -17,12 +17,18 @@
 
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#9966cc"/>
+                <Setter Property="FontFamily" Value="Poppins"/>
             </Style>
 
             <Style TargetType="Border">
-                <Setter Property="Background" Value="White"/>
+                <Setter Property="Background" Value="Black"/>
                 <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth5"/>
                 <Setter Property="materialDesign:ShadowAssist.ShadowEdges" Value="All"/>
+            </Style>
+            <Style TargetType="material:PackIcon">
+                <Setter Property="Foreground" Value="#9966cc"/>
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="Height" Value="32"/>
             </Style>
 
             <ResourceDictionary.MergedDictionaries>

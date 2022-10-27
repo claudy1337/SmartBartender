@@ -21,6 +21,7 @@
           <Property Name="StrengthDegrees" Type="int" />
           <Property Name="Image" Type="image" />
           <Property Name="Price" Type="int" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="Authorization">
           <Key>
@@ -57,7 +58,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LevelType">
@@ -305,6 +306,7 @@
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Price" Type="Int32" />
           <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_Alcohol" FromRole="Alcohol" ToRole="Parameters" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="Authorization">
           <Key>
@@ -348,7 +350,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
         </EntityType>
@@ -602,6 +604,7 @@
           <EntitySetMapping Name="Alcohol">
             <EntityTypeMapping TypeName="SmartBartenderModel.Alcohol">
               <MappingFragment StoreEntitySet="Alcohol">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StrengthDegrees" ColumnName="StrengthDegrees" />

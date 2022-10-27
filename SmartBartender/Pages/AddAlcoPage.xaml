@@ -1,0 +1,68 @@
+﻿<Page x:Class="SmartBartender.Pages.AddAlcoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SmartBartender.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+      Title="AddAlcoPage"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="320"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Add Alco" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBox
+                     FontSize="15"
+                     x:Name="txtName"
+                     Text="{Binding Name}"
+                     Foreground="#9966cc"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     material:HintAssist.Hint="Название" Width="220"/>
+                        <TextBox
+                     Text="{Binding StrengthDegrees}"
+                     FontSize="15"
+                     x:Name="txtStrengthDegrees"
+                     Margin="0,0,0,15"
+                     Foreground="#9966cc"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     material:HintAssist.Hint="Крепкость" Width="220"/>
+                        <TextBox
+                     Text="{Binding Price}"
+                     FontSize="15"
+                     x:Name="txtPrice"
+                     Margin="0,0,0,15"
+                     Foreground="#9966cc"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     material:HintAssist.Hint="Цена" Width="220"/>
+                        <ComboBox x:Name="CBIsActive" DisplayMemberPath="isActive" FontSize="15" Width="220" material:HintAssist.Hint="Активный?" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                            <TextBlock Text="Нет"/>
+                            <TextBlock Text="Да"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Background="Transparent" Width="220" Height="40" Foreground="Black" Cursor="Hand" x:Name="btnEditOrAddAlco" Click="btnEditOrAddAlco_Click"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Image Grid.Column="1" RenderOptions.BitmapScalingMode="HighQuality" Margin="25" Source="{Binding Image}" x:Name="imgAlco" MouseLeftButtonDown="imgAlco_MouseLeftButtonDown"/>
+        </Grid>
+    </Border>
+</Page>

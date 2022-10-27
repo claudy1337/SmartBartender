@@ -25,6 +25,7 @@ namespace SmartBartender.Data.Model
         public Nullable<int> StrengthDegrees { get; set; }
         public byte[] Image { get; set; }
         public Nullable<int> Price { get; set; }
+        public Nullable<bool> isActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parameters> Parameters { get; set; }

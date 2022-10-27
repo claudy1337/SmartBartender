@@ -13,7 +13,7 @@
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
-    <Border>
+    <Border Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -45,11 +45,15 @@
                         <TextBlock Text="Registration" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
                         <StackPanel Grid.Row="2"  Margin="10">
                             <Button Background="Transparent" Height="40" Content="Registration" Foreground="Black" x:Name="btnRegistration" Click="btnRegistration_Click" Width="240"/>
-                            <TextBlock x:Name="btnAuth" MouseLeftButtonDown="btnAuth_MouseLeftButtonDown"  Text="Do Have Account?" FontSize="15" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+                            <TextBlock FontSize="12" x:Name="btnAuth" MouseLeftButtonDown="btnAuth_MouseLeftButtonDown"  Text="Do Have Account?" HorizontalAlignment="Right" Margin="0,5,0,0" Width="138"/>
                         </StackPanel>
                     </Grid>
                 </material:Card>
             </Border>
+            <StackPanel Grid.Column="1" Margin="15" VerticalAlignment="Center">
+                <TextBlock Text="Smart Bartender" FontSize="30" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <Image Source="/Resources/icon.jpg" />
+            </StackPanel>
         </Grid>
     </Border>
 </Window>

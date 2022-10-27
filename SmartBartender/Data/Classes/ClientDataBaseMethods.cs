@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Common;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Win32;
 using SmartBartender.Data.Model;
 namespace SmartBartender.Data.Classes
 {
@@ -73,6 +75,29 @@ namespace SmartBartender.Data.Classes
                     return;
                 }
         }
+        public static void EditClient(Client oldCLient, int age, string name, int gender)
+        {
+            var getClient = GetClient(oldCLient.Authorization.Login, oldCLient.Authorization.Password);
+            if (getClient != null)
+            {
+                getClient.Age = age;
+                getClient.Name = name;
+                getClient.Gender = gender;
+                DataBaseConnection.connection.SaveChanges();
+                MessageBox.Show("данные успешно поменялись");
+            }
+        }
+        public static void EditImageClient(Client oldClient)
+        {
+            var getuser = GetClient(oldClient.Authorization.Login, oldClient.Authorization.Password);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog().GetValueOrDefault())
+            {
+                getuser.Image = File.ReadAllBytes(openFileDialog.FileName);
+            }
+            DataBaseConnection.connection.SaveChanges();
+        }
+        
         
     }
 }

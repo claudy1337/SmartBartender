@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e19fad5260204e4e8672dc145abd2ae4" Name="Diagram1">
+      <Diagram DiagramId="d2faa5f3dd46474e800c45bc2f051f2e" Name="Diagram1">
         <EntityTypeShape EntityType="SmartBartenderModel.AgeType" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.Alcohol" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartBartenderModel.Authorization" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />

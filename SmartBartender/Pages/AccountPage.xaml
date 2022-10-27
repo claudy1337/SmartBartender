@@ -1,0 +1,68 @@
+﻿<Page x:Class="SmartBartender.Pages.AccountPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SmartBartender.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+      Title="AccountPage"
+      FontFamily="Poppins"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="320"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Account" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"/>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+                        <TextBox
+                     IsReadOnly="True"
+                     FontSize="15"
+                     x:Name="txtLogin"
+                     Text="{Binding Authorization.Login}"
+                     Foreground="#9966cc"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     material:HintAssist.Hint="Login" Width="220"/>
+                        <TextBox
+                     FontSize="15"
+                     Text="{Binding Name}"
+                     x:Name="txtName"
+                     Foreground="#9966cc"
+                     Margin="0,15,0,15"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     material:HintAssist.Hint="Name" Width="220"/>
+                        <TextBox
+                     Text="{Binding Age}"
+                     FontSize="15"
+                     x:Name="txtAge"
+                     Margin="0,0,0,15"
+                     Foreground="#9966cc"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     material:HintAssist.Hint="Age" Width="220"/>
+                        <ComboBox x:Name="CBGender" DisplayMemberPath="Type" FontSize="15" Width="220" material:HintAssist.Hint="Gender" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Background="Transparent" Width="220" Height="40" Content="Edit" Foreground="Black" Cursor="Hand" x:Name="btnEditAccount" Click="btnEditAccount_Click"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Image Grid.Column="1" RenderOptions.BitmapScalingMode="HighQuality" Margin="25" Source="{Binding Image}" x:Name="imgAccount" MouseLeftButtonDown="imgAccount_MouseLeftButtonDown"/>
+        </Grid>
+    </Border>
+</Page>

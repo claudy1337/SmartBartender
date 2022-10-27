@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e19fad5260204e4e8672dc145abd2ae4" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartBartenderModel.AgeType" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.Alcohol" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.Authorization" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.Client" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.DropHistory" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.Gender" Width="1.5" PointX="0.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.LevelType" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.MoodType" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.Parameters" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.Role" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartBartenderModel.TimesOfDayType" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_AgeType1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_Alcohol" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Client_Authorization" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Client_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_DropHistory_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_DropHistory_Parameters" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_LevelType" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_MoodType" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartBartenderModel.FK_Parameters_TimesOfDayType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

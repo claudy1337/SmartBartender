@@ -1,0 +1,733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SmartBartenderModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgeType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="int" />
+        </EntityType>
+        <EntityType Name="Alcohol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="StrengthDegrees" Type="int" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRole" Type="int" />
+          <Property Name="idAuthorization" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Image" Type="image" />
+          <Property Name="Gender" Type="int" />
+        </EntityType>
+        <EntityType Name="DropHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idParameters" Type="int" />
+          <Property Name="idClient" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="DateDrop" Type="date" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LevelType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MoodType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAlcohol" Type="int" />
+          <Property Name="idMoodType" Type="int" />
+          <Property Name="idAgeType" Type="int" />
+          <Property Name="idTimesOfDay" Type="int" />
+          <Property Name="idLevelType" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TimesOfDayType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="int" />
+        </EntityType>
+        <Association Name="FK_Client_Authorization">
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authorization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idAuthorization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropHistory_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="DropHistory" Type="Self.DropHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DropHistory">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropHistory_Parameters">
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="0..1" />
+          <End Role="DropHistory" Type="Self.DropHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameters">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DropHistory">
+              <PropertyRef Name="idParameters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_AgeType1">
+          <End Role="AgeType" Type="Self.AgeType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idAgeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_Alcohol">
+          <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alcohol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idAlcohol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_LevelType">
+          <End Role="LevelType" Type="Self.LevelType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idLevelType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_MoodType">
+          <End Role="MoodType" Type="Self.MoodType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MoodType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idMoodType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_TimesOfDayType">
+          <End Role="TimesOfDayType" Type="Self.TimesOfDayType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimesOfDayType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idTimesOfDay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SmartBartenderModelContainer">
+          <EntitySet Name="AgeType" EntityType="Self.AgeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alcohol" EntityType="Self.Alcohol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DropHistory" EntityType="Self.DropHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LevelType" EntityType="Self.LevelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoodType" EntityType="Self.MoodType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimesOfDayType" EntityType="Self.TimesOfDayType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Authorization" Association="Self.FK_Client_Authorization">
+            <End Role="Authorization" EntitySet="Authorization" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Role" Association="Self.FK_Client_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropHistory_Client" Association="Self.FK_DropHistory_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="DropHistory" EntitySet="DropHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropHistory_Parameters" Association="Self.FK_DropHistory_Parameters">
+            <End Role="Parameters" EntitySet="Parameters" />
+            <End Role="DropHistory" EntitySet="DropHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_AgeType1" Association="Self.FK_Parameters_AgeType1">
+            <End Role="AgeType" EntitySet="AgeType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_Alcohol" Association="Self.FK_Parameters_Alcohol">
+            <End Role="Alcohol" EntitySet="Alcohol" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_LevelType" Association="Self.FK_Parameters_LevelType">
+            <End Role="LevelType" EntitySet="LevelType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_MoodType" Association="Self.FK_Parameters_MoodType">
+            <End Role="MoodType" EntitySet="MoodType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_TimesOfDayType" Association="Self.FK_Parameters_TimesOfDayType">
+            <End Role="TimesOfDayType" EntitySet="TimesOfDayType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartBartenderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgeType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="Int32" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_AgeType1" FromRole="AgeType" ToRole="Parameters" />
+        </EntityType>
+        <EntityType Name="Alcohol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StrengthDegrees" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Price" Type="Int32" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_Alcohol" FromRole="Alcohol" ToRole="Parameters" />
+        </EntityType>
+        <EntityType Name="Authorization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Authorization" FromRole="Authorization" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRole" Type="Int32" />
+          <Property Name="idAuthorization" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Gender" Type="Int32" />
+          <NavigationProperty Name="Authorization" Relationship="Self.FK_Client_Authorization" FromRole="Client" ToRole="Authorization" />
+          <NavigationProperty Name="Gender1" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Client_Role" FromRole="Client" ToRole="Role" />
+          <NavigationProperty Name="DropHistory" Relationship="Self.FK_DropHistory_Client" FromRole="Client" ToRole="DropHistory" />
+        </EntityType>
+        <EntityType Name="DropHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idParameters" Type="Int32" />
+          <Property Name="idClient" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="DateDrop" Type="DateTime" Precision="0" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_DropHistory_Client" FromRole="DropHistory" ToRole="Client" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK_DropHistory_Parameters" FromRole="DropHistory" ToRole="Parameters" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="LevelType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_LevelType" FromRole="LevelType" ToRole="Parameters" />
+        </EntityType>
+        <EntityType Name="MoodType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_MoodType" FromRole="MoodType" ToRole="Parameters" />
+        </EntityType>
+        <EntityType Name="Parameters">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAlcohol" Type="Int32" />
+          <Property Name="idMoodType" Type="Int32" />
+          <Property Name="idAgeType" Type="Int32" />
+          <Property Name="idTimesOfDay" Type="Int32" />
+          <Property Name="idLevelType" Type="Int32" />
+          <NavigationProperty Name="AgeType" Relationship="Self.FK_Parameters_AgeType1" FromRole="Parameters" ToRole="AgeType" />
+          <NavigationProperty Name="Alcohol" Relationship="Self.FK_Parameters_Alcohol" FromRole="Parameters" ToRole="Alcohol" />
+          <NavigationProperty Name="DropHistory" Relationship="Self.FK_DropHistory_Parameters" FromRole="Parameters" ToRole="DropHistory" />
+          <NavigationProperty Name="LevelType" Relationship="Self.FK_Parameters_LevelType" FromRole="Parameters" ToRole="LevelType" />
+          <NavigationProperty Name="MoodType" Relationship="Self.FK_Parameters_MoodType" FromRole="Parameters" ToRole="MoodType" />
+          <NavigationProperty Name="TimesOfDayType" Relationship="Self.FK_Parameters_TimesOfDayType" FromRole="Parameters" ToRole="TimesOfDayType" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Role" FromRole="Role" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TimesOfDayType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="Int32" />
+          <NavigationProperty Name="Parameters" Relationship="Self.FK_Parameters_TimesOfDayType" FromRole="TimesOfDayType" ToRole="Parameters" />
+        </EntityType>
+        <Association Name="FK_Parameters_AgeType1">
+          <End Role="AgeType" Type="Self.AgeType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idAgeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_Alcohol">
+          <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alcohol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idAlcohol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Authorization">
+          <End Role="Authorization" Type="Self.Authorization" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authorization">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idAuthorization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropHistory_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="DropHistory" Type="Self.DropHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DropHistory">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DropHistory_Parameters">
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="0..1" />
+          <End Role="DropHistory" Type="Self.DropHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parameters">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DropHistory">
+              <PropertyRef Name="idParameters" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_LevelType">
+          <End Role="LevelType" Type="Self.LevelType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idLevelType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_MoodType">
+          <End Role="MoodType" Type="Self.MoodType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MoodType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idMoodType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parameters_TimesOfDayType">
+          <End Role="TimesOfDayType" Type="Self.TimesOfDayType" Multiplicity="0..1" />
+          <End Role="Parameters" Type="Self.Parameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TimesOfDayType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Parameters">
+              <PropertyRef Name="idTimesOfDay" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartBartenderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgeType" EntityType="Self.AgeType" />
+          <EntitySet Name="Alcohol" EntityType="Self.Alcohol" />
+          <EntitySet Name="Authorization" EntityType="Self.Authorization" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="DropHistory" EntityType="Self.DropHistory" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="LevelType" EntityType="Self.LevelType" />
+          <EntitySet Name="MoodType" EntityType="Self.MoodType" />
+          <EntitySet Name="Parameters" EntityType="Self.Parameters" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TimesOfDayType" EntityType="Self.TimesOfDayType" />
+          <AssociationSet Name="FK_Parameters_AgeType1" Association="Self.FK_Parameters_AgeType1">
+            <End Role="AgeType" EntitySet="AgeType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_Alcohol" Association="Self.FK_Parameters_Alcohol">
+            <End Role="Alcohol" EntitySet="Alcohol" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Authorization" Association="Self.FK_Client_Authorization">
+            <End Role="Authorization" EntitySet="Authorization" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Role" Association="Self.FK_Client_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropHistory_Client" Association="Self.FK_DropHistory_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="DropHistory" EntitySet="DropHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DropHistory_Parameters" Association="Self.FK_DropHistory_Parameters">
+            <End Role="Parameters" EntitySet="Parameters" />
+            <End Role="DropHistory" EntitySet="DropHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_LevelType" Association="Self.FK_Parameters_LevelType">
+            <End Role="LevelType" EntitySet="LevelType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_MoodType" Association="Self.FK_Parameters_MoodType">
+            <End Role="MoodType" EntitySet="MoodType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parameters_TimesOfDayType" Association="Self.FK_Parameters_TimesOfDayType">
+            <End Role="TimesOfDayType" EntitySet="TimesOfDayType" />
+            <End Role="Parameters" EntitySet="Parameters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SmartBartenderModelContainer" CdmEntityContainer="SmartBartenderEntities">
+          <EntitySetMapping Name="AgeType">
+            <EntityTypeMapping TypeName="SmartBartenderModel.AgeType">
+              <MappingFragment StoreEntitySet="AgeType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alcohol">
+            <EntityTypeMapping TypeName="SmartBartenderModel.Alcohol">
+              <MappingFragment StoreEntitySet="Alcohol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StrengthDegrees" ColumnName="StrengthDegrees" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Authorization">
+            <EntityTypeMapping TypeName="SmartBartenderModel.Authorization">
+              <MappingFragment StoreEntitySet="Authorization">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="SmartBartenderModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="idAuthorization" ColumnName="idAuthorization" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DropHistory">
+            <EntityTypeMapping TypeName="SmartBartenderModel.DropHistory">
+              <MappingFragment StoreEntitySet="DropHistory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idParameters" ColumnName="idParameters" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DateDrop" ColumnName="DateDrop" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="SmartBartenderModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LevelType">
+            <EntityTypeMapping TypeName="SmartBartenderModel.LevelType">
+              <MappingFragment StoreEntitySet="LevelType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoodType">
+            <EntityTypeMapping TypeName="SmartBartenderModel.MoodType">
+              <MappingFragment StoreEntitySet="MoodType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parameters">
+            <EntityTypeMapping TypeName="SmartBartenderModel.Parameters">
+              <MappingFragment StoreEntitySet="Parameters">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idAlcohol" ColumnName="idAlcohol" />
+                <ScalarProperty Name="idMoodType" ColumnName="idMoodType" />
+                <ScalarProperty Name="idAgeType" ColumnName="idAgeType" />
+                <ScalarProperty Name="idTimesOfDay" ColumnName="idTimesOfDay" />
+                <ScalarProperty Name="idLevelType" ColumnName="idLevelType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="SmartBartenderModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SmartBartenderModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimesOfDayType">
+            <EntityTypeMapping TypeName="SmartBartenderModel.TimesOfDayType">
+              <MappingFragment StoreEntitySet="TimesOfDayType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

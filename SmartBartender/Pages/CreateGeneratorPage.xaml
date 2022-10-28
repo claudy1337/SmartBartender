@@ -72,7 +72,10 @@
                     VerticalScrollBarVisibility="Auto"
                     material:HintAssist.Hint="Описание"
                     x:Name="txtDescrition"/>
-                    <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" Width="220" Height="40" Content="Cохранить" Foreground="Black" Cursor="Hand" x:Name="btnAdd" Click="btnAdd_Click"/>
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Grid.Row="1" VerticalAlignment="Center" Background="Transparent" Width="220" Height="40" Content="Cохранить" Foreground="Black" Cursor="Hand" x:Name="btnAdd" Click="btnAdd_Click"/>
+                        <TextBlock Text="Посмотреть Все" Grid.Row="1" HorizontalAlignment="Right" FontSize="15" x:Name="txtAllShow" MouseLeftButtonDown="txtAllShow_MouseLeftButtonDown" Margin="0,10,0,0"/>
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </Grid>

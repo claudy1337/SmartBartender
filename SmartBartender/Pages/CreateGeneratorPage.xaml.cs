@@ -71,5 +71,10 @@ namespace SmartBartender.Pages
             CBMoodType.ItemsSource = DataBaseConnection.connection.MoodType.ToList();
             CBTimesOfDay.ItemsSource = DataBaseConnection.connection.TimesOfTheDay.ToList();
         }
+
+        private void txtAllShow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new ParametersPage());
+        }
     }
 }

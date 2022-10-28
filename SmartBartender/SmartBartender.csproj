@@ -145,6 +145,9 @@
     <Compile Include="Pages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ParametersPage.xaml.cs">
+      <DependentUpon>ParametersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SupplyOfAlcoholPage.xaml.cs">
       <DependentUpon>SupplyOfAlcoholPage.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\HistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ParametersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

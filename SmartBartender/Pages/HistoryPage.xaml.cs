@@ -28,18 +28,51 @@ namespace SmartBartender.Pages
             CurrentClient = currentClient;
             InitializeComponent();
             BindData();
-            if (ClientDataBaseMethods.GetAdminRole(currentClient.Authorization.Login) == false)
+            if (ClientDataBaseMethods.GetAdminRole(CurrentClient.Authorization.Login) == false)
+                CBClient.Visibility = Visibility.Hidden;
+            else
+                BindingDataForAdmin();
+        }
+        private void CBAlco_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectAlco = CBAlco.SelectedItem as Alcohol;
+            var selectClient = CBClient.SelectedItem as Client;
+            if (ClientDataBaseMethods.GetAdminRole(CurrentClient.Authorization.Login) == false)
             {
-
+                lstvDropHistory.ItemsSource = DataBaseConnection.connection.DropHistory.Where(d => d.Client.id == CurrentClient.id && d.Parameters.Alcohol.id ==selectAlco.id).ToList();
+            }
+            else if (CBClient.SelectedIndex == -1 && ClientDataBaseMethods.GetAdminRole(CurrentClient.Authorization.Login) == true)
+            {
+                lstvDropHistory.ItemsSource = DataBaseConnection.connection.DropHistory.Where(d =>d.Parameters.Alcohol.id == selectAlco.id).ToList();
+            }
+            else
+            {
+                lstvDropHistory.ItemsSource = DataBaseConnection.connection.DropHistory.Where(d => d.Client.id == selectClient.id && d.Parameters.Alcohol.id == selectAlco.id).ToList();
             }
         }
         private void BindingDataForAdmin()
         {
+            CBClient.ItemsSource = DataBaseConnection.connection.Client.ToList();
             
         }
         private void BindData()
         {
+            CBAlco.ItemsSource = DataBaseConnection.connection.Alcohol.ToList();
             lstvDropHistory.ItemsSource = DataBaseConnection.connection.DropHistory.Where(d=>d.Client.id == CurrentClient.id).ToList();
+        }
+
+        private void CBClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectAlco = CBAlco.SelectedItem as Alcohol;
+            var selectClient = CBClient.SelectedItem as Client;
+            if(CBAlco.SelectedIndex == -1)
+            {
+                lstvDropHistory.ItemsSource = DataBaseConnection.connection.DropHistory.Where(d => d.Client.id == selectClient.id).ToList();
+            }
+            else
+            {
+                lstvDropHistory.ItemsSource = DataBaseConnection.connection.DropHistory.Where(d => d.Client.id == selectClient.id && d.Parameters.Alcohol.id == selectAlco.id).ToList();
+            }
         }
     }
 }

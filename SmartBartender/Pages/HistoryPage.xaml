@@ -12,7 +12,7 @@
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="240"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ListView x:Name="lstvDropHistory" Width="460" Height="490" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
@@ -43,8 +43,8 @@
                                                 <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="20"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
-                                                <TextBlock Text="Описание: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Parameters.Descrition}" FontSize="20"/>
+                                                <TextBlock Text="Актив?: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Parameters.Alcohol.isActive1.Type}" FontSize="20"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
                                                 <TextBlock Text="Кол-во: " FontSize="20"/>
@@ -72,7 +72,7 @@
                                             </StackPanel>
                                             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="Настроение: " FontSize="20"/>
-                                                <TextBlock Text="{Binding MoodType.Name}" FontSize="20"/>
+                                                <TextBlock Text="{Binding Parameters.MoodType.Name}" FontSize="20"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="Напиток: " FontSize="20"/>
@@ -90,6 +90,23 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <TextBlock Text="История Выпадений" HorizontalAlignment="Center" FontSize="20" Margin="0,10,0,0"/>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Vertical">
+                <ComboBox x:Name="CBAlco" SelectionChanged="CBAlco_SelectionChanged" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Напиток" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,15,0,15">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+                <ComboBox x:Name="CBClient" SelectionChanged="CBClient_SelectionChanged" DisplayMemberPath="Authorization.Login" FontSize="15" Width="220" material:HintAssist.Hint="Клиент" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,15,0,15">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
         </Grid>
     </Border>
 </Page>

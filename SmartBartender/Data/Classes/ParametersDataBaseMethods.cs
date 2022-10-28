@@ -30,7 +30,7 @@ namespace SmartBartender.Data.Classes
         }
         public static void AddParameters(int idalco, int idmood, int idtime, int idlevel, string descrition, byte[] image)
         {
-            var getParameter = GetParameter(idalco, idmood, idtime, idlevel);
+            var getParameter = GetParameter(idmood, idtime, idlevel);
             if (getParameter == null)
             {
                 Parameters parameters = new Parameters

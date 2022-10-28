@@ -25,6 +25,7 @@ namespace SmartBartender
     public partial class MainWindow : Window
     {
         public static Client CurrentClient;
+        public static Alcohol alcohol;
         public MainWindow(Client currentClient)
         {
             CurrentClient = currentClient;
@@ -83,7 +84,7 @@ namespace SmartBartender
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            FramePageContainer.Navigate(new CocktailsPage(CurrentClient));
+            FramePageContainer.Navigate(new CocktailsPage(alcohol));
         }
 
         private void btnOpenGenerator_Click(object sender, RoutedEventArgs e)

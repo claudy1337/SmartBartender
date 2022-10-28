@@ -23,6 +23,7 @@ namespace SmartBartender.Pages
     public partial class GeneratorPage : Page
     {
         int count;
+        public static Alcohol Alcohol;
         public static Client CurrentClient;
         public GeneratorPage(Client currentClient)
         {
@@ -32,17 +33,17 @@ namespace SmartBartender.Pages
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var selectAlco = CBAlco.SelectedItem as Alcohol;
             var selectMood = CBMoodType.SelectedItem as MoodType;
             var selectTime = CBTimesOfDay.SelectedItem as TimesOfTheDay;
             var selectLevel = CBLevel.SelectedItem as LevelType;
-            if (CBAlco.SelectedIndex == -1 || CBLevel.SelectedIndex == -1 || CBMoodType.SelectedIndex == -1 || CBTimesOfDay.SelectedIndex ==-1)
+            txtDescrition.Visibility = Visibility.Visible;
+            if (CBLevel.SelectedIndex == -1 || CBMoodType.SelectedIndex == -1 || CBTimesOfDay.SelectedIndex ==-1)
             {
                 MessageBox.Show("выберите все значения");
             }
             else
             {
-                var getParams = ParametersDataBaseMethods.GetParameter(selectAlco.id, selectMood.id, selectTime.id, selectLevel.id);
+                var getParams = ParametersDataBaseMethods.GetParameter(selectMood.id, selectTime.id, selectLevel.id);
                 if (getParams != null)
                 {
                     count = ParametersDataBaseMethods.RandomCount(getParams.MoodType.id, getParams.LevelType.id);
@@ -50,6 +51,7 @@ namespace SmartBartender.Pages
                     MessageBox.Show($"вам выпал {getParams.Alcohol.Name} в количестве {count}");
                     txtDescrition.Text = getParams.Descrition;
                     this.DataContext = getParams;
+                    Alcohol = AlcoDataBaseMethods.GetCurrentAlcohol(getParams.Alcohol.Name);
                 }
                 else
                 {
@@ -60,10 +62,14 @@ namespace SmartBartender.Pages
         }
         private void BindingData()
         {
-            CBAlco.ItemsSource = DataBaseConnection.connection.Alcohol.Where(a=>a.isActive1.id == 1).ToList();
             CBLevel.ItemsSource = DataBaseConnection.connection.LevelType.ToList();
             CBMoodType.ItemsSource = DataBaseConnection.connection.MoodType.ToList();
             CBTimesOfDay.ItemsSource = DataBaseConnection.connection.TimesOfTheDay.ToList();
+        }
+
+        private void imgAlco_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new CocktailsPage(Alcohol));
         }
     }
 }

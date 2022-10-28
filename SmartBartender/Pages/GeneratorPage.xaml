@@ -16,28 +16,19 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="270"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,15,0,0">
                 <TextBlock Text="Smart Bartender" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="25"/>
-                <ComboBox x:Name="CBAlco" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Напиток" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,15,0,15">
+                <ComboBox x:Name="CBMoodType" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Настроение" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,15,0,0">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="Background" Value="Transparent"/>
                         </Style>
                     </ComboBox.ItemContainerStyle>
                 </ComboBox>
-                <ComboBox x:Name="CBMoodType" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Настроение" Style="{StaticResource MaterialDesignOutlinedComboBox}" >
-                    <ComboBox.ItemContainerStyle>
-                        <Style TargetType="ComboBoxItem">
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-                    </ComboBox.ItemContainerStyle>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">
-                <ComboBox x:Name="CBLevel" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Уровень" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,20,0,15">
+                <ComboBox x:Name="CBLevel" DisplayMemberPath="Name" FontSize="15" Width="220" material:HintAssist.Hint="Уровень" Style="{StaticResource MaterialDesignOutlinedComboBox}" Margin="0,15,0,15">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="Background" Value="Transparent"/>
@@ -51,10 +42,23 @@
                         </Style>
                     </ComboBox.ItemContainerStyle>
                 </ComboBox>
-                <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" Width="220" Height="40" Content="Получить Напиток" Foreground="Black" Cursor="Hand" x:Name="btnAdd" Click="btnAdd_Click" Margin="0,40,0,0"/>
+                
             </StackPanel>
-            <Image Grid.Row="0" Grid.Column="1" Margin="10" Source="{Binding Image}" x:Name="imgAlco" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Margin="10" Source="{Binding Alcohol.Image}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <StackPanel Grid.Row="1">
+                        <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Transparent" Width="220" Height="40" Content="Получить Напиток" Foreground="Black" Cursor="Hand" x:Name="btnAdd" Click="btnAdd_Click"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <Image Grid.Row="0" Grid.Column="1" Margin="10" Source="{Binding Image}" x:Name="imgAlco" RenderOptions.BitmapScalingMode="HighQuality" MouseLeftButtonDown="imgAlco_MouseLeftButtonDown"/>
             <TextBox
+                    Visibility="Hidden"
                     IsReadOnly="True"
                     Foreground="#9966cc"
                     Grid.Row="1"

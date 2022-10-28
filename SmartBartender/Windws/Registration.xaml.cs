@@ -42,6 +42,7 @@ namespace SmartBartender.Windws
                     ClientDataBaseMethods.AddClient(txtName.Text);
                     Client = ClientDataBaseMethods.CurrentClient;
                     MainWindow main = new MainWindow(Client);
+                    MessageBox.Show($"Welcome {Client.Name}");
                     main.Show();
                     this.Close();
                 }

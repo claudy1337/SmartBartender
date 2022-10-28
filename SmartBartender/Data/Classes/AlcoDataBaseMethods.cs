@@ -21,6 +21,11 @@ namespace SmartBartender.Data.Classes
         {
             return GetAllAlcohol().ToList();
         }
+
+        public static IEnumerable<Alcohol> GetActiveAlcohol()
+        {
+            return GetAllAlcohol().Where(a=>a.isActive1.id == 1).ToList();
+        }
         public static IEnumerable<Alcohol> GetAlcohol(string name)
         {
             return GetAllAlcohol().Where(a => a.Name == name).ToList();
@@ -31,7 +36,7 @@ namespace SmartBartender.Data.Classes
         }
         public static IEnumerable<Alcohol> GetAlcohol(string name, int price)
         {
-            return GetAllAlcohol().Where(a => a.Name == name).ToList();
+            return GetAllAlcohol().Where(a => a.Name == name && a.Price == price).ToList();
         }
         public static Alcohol GetCurrentAlcohol(string name)
         {
@@ -60,15 +65,18 @@ namespace SmartBartender.Data.Classes
                 return;
             }
         }
-        public static void EditAlco(Alcohol oldAlcohol, int degrees, int price, byte[] image, int isactive)
+        public static void EditAlco(Alcohol oldAlcohol, int degrees, int price, int isactive, byte[] image, bool statusImage)
         {
             var getAlco = GetCurrentAlcohol(oldAlcohol.Name);
             if (getAlco != null)
             {
                 getAlco.StrengthDegrees = degrees;
                 getAlco.Price = price;
-                getAlco.Image = image;
                 getAlco.isActive = isactive;
+                if (statusImage == true)
+                {
+                    getAlco.Image = image;
+                }
                 DataBaseConnection.connection.SaveChanges();
                 MessageBox.Show("данные обновленны");
             }

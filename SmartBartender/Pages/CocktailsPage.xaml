@@ -6,9 +6,44 @@
       xmlns:local="clr-namespace:SmartBartender.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="700"
-      Title="CocktailsPage">
+      Title="CocktailsPage"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-    <Grid>
-        <TextBlock Text="list"/>
-    </Grid>
+    <Border>
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl x:Name="itemsControl" Grid.Row="1" Width="680">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" MouseLeftButtonDown="WrapPanel_MouseLeftButtonDown"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <material:Card Margin="20" UniformCornerRadius="5" Background="#203044" Width="300">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="250"/>
+                                    <RowDefinition Height="70"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Name}" FontSize="15"/>
+                                            <TextBlock Text="{Binding StrengthDegrees}" FontSize="15"/>
+                                            <TextBlock Text="{Binding Price}" FontSize="15"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                                <Image Source="{Binding Image}" Grid.Row="0" Width="auto"/>
+                            </Grid>
+                        </material:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Border>
 </Page>

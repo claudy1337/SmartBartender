@@ -1,4 +1,5 @@
-﻿using SmartBartender.Data.Model;
+﻿using SmartBartender.Data.Classes;
+using SmartBartender.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,28 @@ namespace SmartBartender.Pages
     /// </summary>
     public partial class CocktailsPage : Page
     {
-        public static Client CurrentClient;
-        public CocktailsPage(Client currentClient)
+        public static Alcohol Alcohol;
+        public CocktailsPage(Alcohol alcohol)
         {
-            CurrentClient = currentClient;
+            Alcohol = alcohol;
             InitializeComponent();
+            if (Alcohol == null)
+            {
+                BindingData();
+            }
+            else
+                itemsControl.ItemsSource = AlcoDataBaseMethods.GetAlcohol(alcohol.Name).ToList();
+
+        }
+        private void BindingData()
+        {
+            itemsControl.ItemsSource = AlcoDataBaseMethods.GetActiveAlcohol();
+        }
+
+        private void WrapPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Random rnd = new Random();
+            MessageBox.Show($"Code: {rnd.Next(100, 900)}");
         }
     }
 }

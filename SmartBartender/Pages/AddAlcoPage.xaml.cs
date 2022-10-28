@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,7 @@ namespace SmartBartender.Pages
     {
         public static Alcohol CurrentAlcohol;
         byte[] image;
+        bool clickImage = false;
         public AddAlcoPage(Alcohol currentAlcohol)
         {
             CurrentAlcohol = currentAlcohol;
@@ -44,6 +46,7 @@ namespace SmartBartender.Pages
 
         private void imgAlco_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            clickImage = true;
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.FilterIndex = 1;
             if (ofd.ShowDialog() == true)
@@ -77,7 +80,7 @@ namespace SmartBartender.Pages
                     else
                     {
                         var selectActive = CBIsActive.SelectedItem as isActive;
-                        AlcoDataBaseMethods.EditAlco(CurrentAlcohol, Convert.ToInt32(txtStrengthDegrees.Text), Convert.ToInt32(txtPrice.Text), image, selectActive.id);
+                        AlcoDataBaseMethods.EditAlco(CurrentAlcohol, Convert.ToInt32(txtStrengthDegrees.Text), Convert.ToInt32(txtPrice.Text), selectActive.id, image, clickImage);
                         NavigationService.Navigate(new SupplyOfAlcoholPage());
                     }
                 }

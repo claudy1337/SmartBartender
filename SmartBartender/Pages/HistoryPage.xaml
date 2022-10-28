@@ -15,37 +15,81 @@
                 <ColumnDefinition Width="225"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <ListView Grid.Column="1" HorizontalAlignment="Center" Margin="5">
-                <Grid Width="430">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="250"/>
-                        <RowDefinition Height="220"/>
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="{Binding Parameters.Image}" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
-                    <StackPanel Grid.Row="1" Margin="5">
-                        <Grid Height="200">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
-                                <TextBlock Text="dffs" FontSize="25"/>
-                                <TextBlock Text="dffs" FontSize="25"/>
-                                <TextBlock Text="dffs" FontSize="25"/>
-                                <TextBlock Text="dffs" FontSize="25"/>
-                                <TextBlock Text="dffs" FontSize="25"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Vertical">
-                                
+            <ListView x:Name="lstvDropHistory" Width="460" Height="490" Grid.Column="1" HorizontalAlignment="Center" Margin="5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="430">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="250"/>
+                                <RowDefinition Height="220"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="{Binding Parameters.Image}" RenderOptions.BitmapScalingMode="HighQuality" Margin="10"/>
+                            <StackPanel Grid.Row="1" Margin="5">
+                                <Grid Height="200">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center">
+                                        <Grid Height="200">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center">
+                                                <TextBlock Text="Название: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="20"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+                                                <TextBlock Text="Описание: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Parameters.Descrition}" FontSize="20"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
+                                                <TextBlock Text="Кол-во: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Count}" FontSize="20"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="Цена: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Price}" FontSize="20"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <Grid Height="200">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="Логин: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Client.Authorization.Login}" FontSize="20"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="Настроение: " FontSize="20"/>
+                                                <TextBlock Text="{Binding MoodType.Name}" FontSize="20"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="Напиток: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="20"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="Уровень: " FontSize="20"/>
+                                                <TextBlock Text="{Binding Parameters.LevelType.Name}" FontSize="20"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
                             </StackPanel>
                         </Grid>
-                    </StackPanel>
-                </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
-            <material:Card Margin="15" Background="#9966cc">
-                <TextBox Height="40"/>
-            </material:Card>
         </Grid>
     </Border>
 </Page>

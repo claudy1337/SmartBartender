@@ -66,7 +66,7 @@ namespace SmartBartender.Pages
         }
         private void BindingData()
         {
-            CBAlco.ItemsSource = DataBaseConnection.connection.Alcohol.ToList();
+            CBAlco.ItemsSource = DataBaseConnection.connection.Alcohol.Where(a=>a.isActive1.id == 1).ToList();
             CBLevel.ItemsSource = DataBaseConnection.connection.LevelType.ToList();
             CBMoodType.ItemsSource = DataBaseConnection.connection.MoodType.ToList();
             CBTimesOfDay.ItemsSource = DataBaseConnection.connection.TimesOfTheDay.ToList();

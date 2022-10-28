@@ -53,6 +53,7 @@ namespace SmartBartender.Windws
                 {
                     CurrentClient = ClientDataBaseMethods.GetClient(txtLogin.Text, txtPassword.Password);
                     MainWindow main = new MainWindow(CurrentClient);
+                    MessageBox.Show($"Welcome {CurrentClient.Name}");
                     main.Show();
                     this.Close();
                 }

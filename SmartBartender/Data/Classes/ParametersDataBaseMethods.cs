@@ -20,6 +20,10 @@ namespace SmartBartender.Data.Classes
         {
             return GetParameters().ToList();
         }
+        public static Parameters GetParameter(int idmood, int idtime, int idlevel)
+        {
+            return GetParameters().FirstOrDefault(p =>p.MoodType.id == idmood && p.TimesOfTheDay.id == p.idTimesOfDay && p.LevelType.id == idlevel);
+        }
         public static Parameters GetParameter(int idalco, int idmood, int idtime, int idlevel)
         {
             return GetParameters().FirstOrDefault(p=>p.Alcohol.id == idalco && p.MoodType.id == idmood && p.TimesOfTheDay.id == p.idTimesOfDay && p.LevelType.id == idlevel);
@@ -54,7 +58,7 @@ namespace SmartBartender.Data.Classes
             DropHistory dropHistory = new DropHistory
             {
                 idParameters = getParameter.id,
-                Price = getParameter.Alcohol.Price,
+                Price = getParameter.Alcohol.Price * count,
                 DateDrop = DateTime.Now,
                 idClient = client.id,
                 Count = count
@@ -63,6 +67,7 @@ namespace SmartBartender.Data.Classes
             DataBaseConnection.connection.DropHistory.Add(dropHistory);
             DataBaseConnection.connection.SaveChanges();
         }
+
         public static int RandomCount(int mood, int level)
         {
             Random rnd = new Random();

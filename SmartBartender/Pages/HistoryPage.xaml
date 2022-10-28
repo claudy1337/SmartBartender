@@ -39,20 +39,20 @@
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
                                             <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center">
-                                                <TextBlock Text="Название: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="20"/>
+                                                <TextBlock Text="Название: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="15"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
-                                                <TextBlock Text="Актив?: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Parameters.Alcohol.isActive1.Type}" FontSize="20"/>
+                                                <TextBlock Text="Актив?: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Parameters.Alcohol.isActive1.Type}" FontSize="15"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center">
-                                                <TextBlock Text="Кол-во: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Count}" FontSize="20"/>
+                                                <TextBlock Text="Кол-во: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Count}" FontSize="15"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="Цена: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Price}" FontSize="20"/>
+                                                <TextBlock Text="Цена: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Price}" FontSize="15"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>
@@ -67,20 +67,20 @@
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
                                             <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="Логин: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Client.Authorization.Login}" FontSize="20"/>
+                                                <TextBlock Text="Логин: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Client.Authorization.Login}" FontSize="15"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="Настроение: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Parameters.MoodType.Name}" FontSize="20"/>
+                                                <TextBlock Text="Настроение: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Parameters.MoodType.Name}" FontSize="15"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="Напиток: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="20"/>
+                                                <TextBlock Text="Напиток: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Parameters.Alcohol.Name}" FontSize="15"/>
                                             </StackPanel>
                                             <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="Уровень: " FontSize="20"/>
-                                                <TextBlock Text="{Binding Parameters.LevelType.Name}" FontSize="20"/>
+                                                <TextBlock Text="Уровень: " FontSize="15"/>
+                                                <TextBlock Text="{Binding Parameters.LevelType.Name}" FontSize="15"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>

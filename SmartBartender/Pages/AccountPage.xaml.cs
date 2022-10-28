@@ -31,8 +31,13 @@ namespace SmartBartender.Pages
         }
         private void BindingData()
         {
+            if (CurrentClient.Gender == null)
+            {
+
+            }
+            else
+                CBGender.SelectedIndex = CurrentClient.Gender1.id;
             CBGender.ItemsSource = DataBaseConnection.connection.Gender.ToList();
-            CBGender.SelectedIndex = CurrentClient.Gender1.id;
             if (CurrentClient.Image == null)
                 imgAccount.Source = new BitmapImage(new Uri("/Resources/user.png", UriKind.RelativeOrAbsolute));
             else
